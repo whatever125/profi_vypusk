@@ -15,19 +15,48 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'PROFIВЫБОР',
       home: TabsPage(),
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primaryColor: Colors.white,
-        textTheme: TextTheme(
-          headline6: TextStyle(fontSize: 36.0),
-        ),
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
     );
   }
+}
+
+
+class AppTheme {
+  static final ThemeData lightTheme = ThemeData(
+    brightness: Brightness.light,
+    primaryColor: Color(0xFFFFFFFF),
+    backgroundColor: Color(0xFFFFFFFF),
+    scaffoldBackgroundColor: Color(0xFFFFFFFF),
+    canvasColor: Color(0xFFFFFFFF),
+    appBarTheme: AppBarTheme(
+      iconTheme: IconThemeData(
+        color: Color(0xFF1DA1F2),
+      ),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedItemColor: Color(0xFF1DA1F2),
+      unselectedItemColor: Color(0xFF5B7083),
+    ),
+  );
+
+  static final ThemeData darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    primaryColor: Color(0xFF15202B),
+    backgroundColor: Color(0xFF15202B),
+    scaffoldBackgroundColor: Color(0xFF15202B),
+    canvasColor: Color(0xFF15202B),
+    appBarTheme: AppBarTheme(
+      iconTheme: IconThemeData(
+        color: Color(0xFF1DA1F2),
+      ),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedItemColor: Color(0xFF1DA1F2),
+      unselectedItemColor: Color(0xFF8899A6),
+    ),
+  );
 }
 
 
@@ -63,8 +92,6 @@ class _TabsPageState extends State<TabsPage> {
               label: tabItem.label,
             )
         ],
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
       ),
     );
   }
@@ -159,9 +186,7 @@ class Search extends StatelessWidget {
       body: Center(
         child: Text(
           'Search',
-          style: TextStyle(
-            fontSize: 24.0
-          )
+          style: TextStyle(fontSize: 24.0)
         ),
       ),
     );
@@ -178,9 +203,7 @@ class Favorite extends StatelessWidget {
       body: Center(
         child: Text(
           'Favorites',
-          style: TextStyle(
-            fontSize: 24.0
-          )
+          style: TextStyle(fontSize: 24.0)
         ),
       ),
     );
@@ -197,9 +220,7 @@ class Profile extends StatelessWidget {
       body: Center(
         child: Text(
           'Profile',
-          style: TextStyle(
-            fontSize: 24.0,
-          )
+          style: TextStyle(fontSize: 24.0)
         ),
       ),
     );
