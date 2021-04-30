@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
-import 'dart:math';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'PROFIВЫБОР',
+      title: 'PROFIВЫПУСК',
       home: TabsPage(),
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
@@ -27,6 +28,7 @@ class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     primaryColor: Color(0xFFFFFFFF),
+    accentColor: Color(0xFF1DA1F2),
     backgroundColor: Color(0xFFFFFFFF),
     scaffoldBackgroundColor: Color(0xFFFFFFFF),
     canvasColor: Color(0xFFFFFFFF),
@@ -34,6 +36,9 @@ class AppTheme {
       iconTheme: IconThemeData(
         color: Color(0xFF1DA1F2),
       ),
+    ),
+    iconTheme: IconThemeData(
+      color: Color(0xFF5B7083),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: Color(0xFF1DA1F2),
@@ -44,6 +49,7 @@ class AppTheme {
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     primaryColor: Color(0xFF15202B),
+    accentColor: Color(0xFF1DA1F2),
     backgroundColor: Color(0xFF15202B),
     scaffoldBackgroundColor: Color(0xFF15202B),
     canvasColor: Color(0xFF15202B),
@@ -51,6 +57,9 @@ class AppTheme {
       iconTheme: IconThemeData(
         color: Color(0xFF1DA1F2),
       ),
+    ),
+    iconTheme: IconThemeData(
+      color: Color(0xFF8899A6),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: Color(0xFF1DA1F2),
@@ -141,8 +150,13 @@ class Feed extends StatefulWidget {
 
 
 class FeedState extends State<Feed> {
-  final _events = [];
-  final _biggerFont = TextStyle(fontSize: 18.0);
+  Future<List<dynamic>> data;
+
+  @override
+  void initState() {
+    super.initState();
+    data = fetchFeed();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -152,27 +166,52 @@ class FeedState extends State<Feed> {
   }
 
   Widget _buildFeed() {
-    return ListView.builder(
-      padding: EdgeInsets.all(16.0),
-      itemBuilder: (context, i) {
-        if (i.isOdd) return Divider();
-        final index = i ~/ 2;
-        if (index >= _events.length) {
-          Random random = new Random();
-          _events.add(random.nextInt(1000000));
+    return Container(
+      child: FutureBuilder<List<dynamic>>(
+        future: data,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return RefreshIndicator(
+            child: _listView(snapshot),
+            onRefresh: _pullRefresh,
+          );
         }
-        return _buildRow(_events[index]);
-      }
+      )
     );
   }
 
-  Widget _buildRow(int x) {
-    return ListTile(
-      title: Text(
-        x.toString(),
-        style: _biggerFont,
-      ),
-    );
+  Widget _listView(AsyncSnapshot snapshot) {
+    if (snapshot.hasData) {
+      return ListView.builder(
+          shrinkWrap: false,
+          padding: EdgeInsets.all(16.0),
+          itemCount: snapshot.data.length,
+          itemBuilder: (context, index) {
+            if (index.isOdd) return Divider();
+            final i = index ~/ 2;
+            return ListTile(
+              title: Text(
+                snapshot.data[i]['title'],
+              ),
+            );
+          }
+      );
+    }
+    else {
+      return Center(child: CircularProgressIndicator());
+    }
+  }
+
+  Future<void> _pullRefresh() async {
+    List<dynamic> freshData = await fetchFeed();
+    setState(() {
+      data = Future.value(freshData);
+    });
+  }
+
+  Future<List<dynamic>> fetchFeed() async {
+    final String apiUrl = "https://jsonplaceholder.typicode.com/posts";
+    var result = await http.get(Uri.parse(apiUrl));
+    return json.decode(result.body);
   }
 }
 
@@ -248,17 +287,26 @@ class NavDrawer extends StatelessWidget {
                 ),
                 ListTile(
                   title: Text('Избранное'),
-                  leading: Icon(Icons.star_outline),
+                  leading: Icon(
+                    Icons.star_outline,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
                   onTap: () => {Navigator.of(context).pop()},
                 ),
                 ListTile(
                   title: Text('Настройки'),
-                  leading: Icon(Icons.settings_outlined),
+                  leading: Icon(
+                    Icons.settings_outlined,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
                   onTap: () => {Navigator.of(context).pop()},
                 ),
                 ListTile(
                   title: Text('Помощь'),
-                  leading: Icon(Icons.help_outline),
+                  leading: Icon(
+                    Icons.help_outline,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
                   onTap: () => {Navigator.of(context).pop()},
                 ),
               ],
@@ -273,7 +321,10 @@ class NavDrawer extends StatelessWidget {
                     Divider(),
                     ListTile(
                       title: Text('Выйти'),
-                      leading: Icon(Icons.logout),
+                      leading: Icon(
+                        Icons.logout,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
                       onTap: () => {Navigator.of(context).pop()},
                     ),
                   ],
