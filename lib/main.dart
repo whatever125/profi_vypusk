@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import 'auth.dart';
 
 void main() {
   timeDilation = 1.5;
@@ -325,7 +325,7 @@ class NavDrawer extends StatelessWidget {
                         Icons.logout,
                         color: Theme.of(context).iconTheme.color,
                       ),
-                      onTap: () => {Navigator.of(context).pop()},
+                      onTap: () => {Navigator.push(context, MaterialPageRoute(builder: ((context) => AuthPage())))},
                     ),
                   ],
                 )
