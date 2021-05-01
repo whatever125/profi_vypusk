@@ -1,28 +1,37 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'auth.dart';
+import 'dart:async';
+
+StreamController<bool> isLightTheme = StreamController();
 
 void main() {
   timeDilation = 1.5;
   runApp(MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'PROFIВЫПУСК',
-      home: TabsPage(),
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
+    return StreamBuilder<bool>(
+      initialData: true,
+      stream: isLightTheme.stream,
+      builder: (context, snapshot) {
+        return MaterialApp(
+          title: 'PROFIВЫПУСК',
+          home: AuthPage(),
+          theme: snapshot.data ? AppTheme.lightTheme : AppTheme.darkTheme,
+          debugShowCheckedModeBanner: false,
+        );
+      }
     );
+
   }
 }
-
 
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
@@ -102,6 +111,7 @@ class _TabsPageState extends State<TabsPage> {
             )
         ],
       ),
+
     );
   }
 }
@@ -266,24 +276,37 @@ class Profile extends StatelessWidget {
   }
 }
 
-
 class NavDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
         children: <Widget>[
+
           Expanded(
             child: Column(
               children: <Widget>[
-                UserAccountsDrawerHeader(
-                  accountName: Text('Иванов Иван'),
-                  accountEmail: Text('ivanov@ivan.org'),
-                  currentAccountPicture: CircleAvatar(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.blue,
-                    child: Text('ИИ')
+                Row(
+                children: <Widget>[
+                  Expanded(child: UserAccountsDrawerHeader(
+                    accountName: Text('Иванов Иван'),
+                    accountEmail: Text('ivanov@ivan.org'),
+                    currentAccountPicture: CircleAvatar(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.blue,
+                        child: Text('ИИ')
+                    ),
                   ),
+                  ),
+                  Expanded(child: IconButton(
+                    icon: Icon(Icons.lightbulb_outline),
+                    color: Theme.of(context).accentColor,
+                    onPressed: (){isLightTheme.add(Theme.of(context).brightness != Brightness.light);},
+                    alignment: Alignment.centerRight,
+                    padding: EdgeInsets.only(right: 30, bottom: 50),
+
+                  ))
+                ]
                 ),
                 ListTile(
                   title: Text('Избранное'),
@@ -325,13 +348,13 @@ class NavDrawer extends StatelessWidget {
                         Icons.logout,
                         color: Theme.of(context).iconTheme.color,
                       ),
-                      onTap: () => {Navigator.push(context, MaterialPageRoute(builder: ((context) => AuthPage())))},
+                      onTap: () => {Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => AuthPage())))},
                     ),
                   ],
                 )
               )
             )
-          )
+          ),
         ],
       ),
     );

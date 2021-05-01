@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 
+
 class AuthPage extends StatefulWidget {
   @override
   createState() => new AuthPageState();
 }
 
 class AuthPageState extends State<AuthPage> {
-  String email = 'ivanov@ivan.org';
-  String password = 'ivan2006';
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -21,20 +20,20 @@ class AuthPageState extends State<AuthPage> {
         child: TextField(
           controller: controller,
           obscureText: obscureText,
-          style: TextStyle(fontSize: 20, color: Colors.white),
+          style: TextStyle(fontSize: 20, color: Theme.of(context).accentColor),
           decoration: InputDecoration(
-            hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white30),
+            hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Theme.of(context).accentColor.withOpacity(0.3)),
             hintText: hint,
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white, width: 3)
+              borderSide: BorderSide(color: Theme.of(context).accentColor, width: 3)
             ),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white54, width: 1)
+                  borderSide: BorderSide(color: Theme.of(context).accentColor.withOpacity(0.5), width: 1)
               ),
             prefixIcon: Padding(
               padding: EdgeInsets.only(left: 10, right: 10),
               child: IconTheme(
-                data: IconThemeData(color: Colors.white),
+                data: IconThemeData(color: Theme.of(context).accentColor),
                 child: icon,
               ),
             )
@@ -44,10 +43,7 @@ class AuthPageState extends State<AuthPage> {
     }
 
     Widget button(String text, void func()) {
-      return RaisedButton(
-        splashColor: Theme.of(context).primaryColor,
-        highlightColor: Theme.of(context).primaryColor,
-        color: Colors.white,
+      return ElevatedButton(
         child: Text(
           text,
           style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor, fontSize: 20),
@@ -64,11 +60,11 @@ class AuthPageState extends State<AuthPage> {
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(bottom: 20, top: 100),
-              child: input(Icon(Icons.email), "EMAIL", emailController, false),
+              child: input(Icon(Icons.email), "Адрес эл. почты", emailController, false),
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 20),
-              child: input(Icon(Icons.lock), "PASSWORD", passwordController, true),
+              child: input(Icon(Icons.lock), "Пароль", passwordController, true),
             ),
             SizedBox(height: 20,),
             Padding(
@@ -88,7 +84,7 @@ class AuthPageState extends State<AuthPage> {
       backgroundColor: Theme.of(context).primaryColor,
       body: Column(
         children: <Widget>[
-          form('LOGIN', (){})
+          form('Войти', (){Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TabsPage()));})
         ],
       ),
     );
