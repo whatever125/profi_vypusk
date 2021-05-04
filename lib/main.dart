@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:profi_vypusk/splashPage.dart';
 import 'package:profi_vypusk/theme.dart';

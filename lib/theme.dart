@@ -25,6 +25,10 @@ class AppTheme with ChangeNotifier {
       selectedItemColor: LightColor.accent,
       unselectedItemColor: LightColor.secondary,
     ),
+    tabBarTheme: TabBarTheme(
+      labelColor: LightColor.text,
+      unselectedLabelColor: LightColor.secondary,
+    )
   );
 
   static final ThemeData darkTheme = ThemeData(
@@ -53,6 +57,10 @@ class AppTheme with ChangeNotifier {
       bodyColor: DarkColor.text,
       displayColor: DarkColor.text,
     ),
+    tabBarTheme: TabBarTheme(
+      labelColor: DarkColor.text,
+      unselectedLabelColor: DarkColor.secondary,
+    )
   );
 
   ThemeData _themeData;
