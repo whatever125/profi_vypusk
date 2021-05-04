@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'welcomePage.dart';
 import 'package:profi_vypusk/theme.dart';
 import 'package:provider/provider.dart';
+import 'favPage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -222,7 +223,7 @@ class NavDrawer extends StatelessWidget {
                     Icons.star_outline,
                     color: Theme.of(context).iconTheme.color,
                   ),
-                  onTap: () => {Navigator.of(context).pop()},
+                  onTap: () => {Navigator.of(context).push(MaterialPageRoute(builder: ((context) => FavoritePage())))},
                 ),
                 ListTile(
                   title: Text('Настройки'),
