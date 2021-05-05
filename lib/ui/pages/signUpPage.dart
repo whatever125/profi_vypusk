@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:profi_vypusk/homePage.dart';
-import 'package:profi_vypusk/colors.dart';
-import 'package:profi_vypusk/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:profi_vypusk/ui/pages/homePage/homePage.dart';
+import 'package:profi_vypusk/ui/themes/theme.dart';
+import 'package:profi_vypusk/ui/themes/colors.dart';
 
 class SignUpPage extends StatefulWidget {
   @override

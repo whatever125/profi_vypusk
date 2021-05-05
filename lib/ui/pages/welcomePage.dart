@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:profi_vypusk/colors.dart';
-import 'package:profi_vypusk/signinPage.dart';
-import 'package:profi_vypusk/signUpPage.dart';
-import 'package:profi_vypusk/theme.dart';
+import 'package:profi_vypusk/ui/themes/theme.dart';
+import 'package:profi_vypusk/ui/themes/colors.dart';
+import 'package:profi_vypusk/ui/pages/signinPage.dart';
+import 'package:profi_vypusk/ui/pages/signUpPage.dart';
 import 'package:provider/provider.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -35,10 +35,11 @@ class _WelcomePageState extends State<WelcomePage> {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                            text: 'Работа найдется для каждого',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            )),
+                          text: 'Работа найдется для каждого',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -55,8 +56,9 @@ class _WelcomePageState extends State<WelcomePage> {
                   height: 50,
                   width: 250,
                   decoration: BoxDecoration(
-                      color: Color(0xFF1DA1F2),
-                      borderRadius: BorderRadius.circular(25)),
+                    color: Color(0xFF1DA1F2),
+                    borderRadius: BorderRadius.circular(25),
+                  ),
                   child: TextButton(
                     child: Text(
                       'Зарегистрироваться',
@@ -64,9 +66,11 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                     onPressed: () => {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => SignUpPage())))
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => SignUpPage()),
+                        ),
+                      ),
                     },
                   ),
                 ),
@@ -94,9 +98,11 @@ class _WelcomePageState extends State<WelcomePage> {
                       ),
                       onPressed: () => {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) => SignInPage())))
+                          context,
+                          MaterialPageRoute(
+                            builder: ((context) => SignInPage()),
+                          ),
+                        ),
                       },
                     ),
                   ],

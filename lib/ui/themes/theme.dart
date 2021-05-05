@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:profi_vypusk/colors.dart';
-import 'storageManager.dart';
+import 'package:profi_vypusk/ui/themes/colors.dart';
+import 'package:profi_vypusk/helper/services/local_storage_service.dart';
 
 class AppTheme with ChangeNotifier {
   static final ThemeData lightTheme = ThemeData(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:profi_vypusk/welcomePage.dart';
+import 'package:profi_vypusk/ui/pages/welcomePage.dart';
 
 class SplashPage extends StatefulWidget {
   @override
