@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.copp42.profi_vypusk">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="profi_vypusk"
+        android:label="PROFIВЫПУСК"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

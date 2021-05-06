@@ -49,27 +49,23 @@ class AppTheme with ChangeNotifier {
       selectedItemColor: DarkColor.accent,
       unselectedItemColor: DarkColor.secondary,
     ),
-    textTheme: TextTheme().apply(
-      bodyColor: DarkColor.text,
-      displayColor: DarkColor.text,
-    ),
   );
 
   ThemeData _themeData;
 
-  ThemeData getTheme() {
-    return _themeData;
-  }
-
-  ThemeData initialThemeSet() {
+  AppTheme() {
     StorageManager.readData('themeMode').then((value) {
       var themeMode = value ?? 'light';
       if (themeMode == 'light') {
-        _themeData = lightTheme;
+        this._themeData = lightTheme;
       } else {
-        _themeData = darkTheme;
+        this._themeData = darkTheme;
       }
+      notifyListeners();
     });
+  }
+
+  ThemeData getTheme() {
     return _themeData;
   }
 

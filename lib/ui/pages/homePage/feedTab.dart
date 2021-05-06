@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import "dart:math";
 
 class FeedTab extends StatefulWidget {
   @override
@@ -39,6 +40,45 @@ class FeedTabState extends State<FeedTab> {
 
   Widget _listView(AsyncSnapshot snapshot) {
     if (snapshot.hasData) {
+      final _random = new Random();
+      final list = [
+        ListTile(
+          leading: Icon(
+            Icons.people,
+            color: Theme.of(context).accentColor,
+          ),
+          title: Text(
+            'Приглашение на собеседование',
+          ),
+          subtitle: Text(
+            'На должность экономист от КУ "Региональный центр для лиц без определенного места жительства" Минтруда Кузбасса 21.06.2021 10:30',
+          ),
+        ),
+        ListTile(
+          leading: Icon(
+            Icons.cancel,
+            color: Theme.of(context).accentColor,
+          ),
+          title: Text(
+            'Статус обращения',
+          ),
+          subtitle: Text(
+            'Ваше электронное обращение для психологической поддержки от 17.04.2021 отклонено ведомством',
+          ),
+        ),
+        ListTile(
+          leading: Icon(
+            Icons.check_circle,
+            color: Theme.of(context).accentColor,
+          ),
+          title: Text(
+            'Статус обращения',
+          ),
+          subtitle: Text(
+            'Ваше электронное обращение для поиска работы от 17.04.2021 рассмотрено. Результат: выполнено',
+          ),
+        ),
+      ];
       return ListView.builder(
         shrinkWrap: false,
         padding: EdgeInsets.all(15.0),
@@ -46,11 +86,7 @@ class FeedTabState extends State<FeedTab> {
         itemBuilder: (context, index) {
           if (index.isOdd) return Divider();
           final i = index ~/ 2;
-          return ListTile(
-            title: Text(
-              snapshot.data[i]['title'],
-            ),
-          );
+          return list[_random.nextInt(list.length)];
         },
       );
     } else {

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       builder: (context, theme, child) => MaterialApp(
         title: 'PROFIВЫПУСК',
         home: SplashPage(),
-        theme: theme.initialThemeSet(),
+        theme: theme.getTheme(),
         debugShowCheckedModeBanner: false,
       ),
     );

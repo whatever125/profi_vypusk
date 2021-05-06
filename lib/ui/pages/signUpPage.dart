@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:profi_vypusk/ui/pages/homePage/homePage.dart';
 import 'package:profi_vypusk/ui/themes/theme.dart';
@@ -137,12 +138,14 @@ class _SignUpPageState extends State<SignUpPage> {
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         onPressed: () => {
-                          Navigator.of(context)
-                              .popUntil((route) => route.isFirst),
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) => HomePage()))),
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: HomePage(),
+                            ),
+                            (route) => route.isFirst,
+                          ),
                         },
                       ),
                     ),

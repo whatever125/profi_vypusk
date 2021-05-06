@@ -32,12 +32,7 @@ class _ProfileTabState extends State<ProfileTab> {
         future: user,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return RefreshIndicator(
-            child: Stack(
-              children: [
-                ListView(),
-                _profileView(snapshot),
-              ],
-            ),
+            child: _profileView(snapshot),
             onRefresh: _pullRefresh,
           );
         },
@@ -47,148 +42,152 @@ class _ProfileTabState extends State<ProfileTab> {
 
   Widget _profileView(AsyncSnapshot snapshot) {
     if (snapshot.hasData) {
-      return SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(15),
-          child: Column(
-            children: [
-              Container(
-                height: 80,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 80,
-                      width: 80,
-                      child: CircleAvatar(
-                        radius: 40,
-                        backgroundImage: NetworkImage(
-                          "https://thispersondoesnotexist.com/image",
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Expanded(
-                      child: Container(
+      return ListView(
+        children: [
+          Container(
+            padding: EdgeInsets.all(15),
+            child: Column(
+              children: [
+                Container(
+                  height: 80,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
                         height: 80,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Consumer<AppTheme>(
-                              builder: (context, theme, child) => RichText(
-                                text: TextSpan(
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    color:
-                                    theme.getTheme() == AppTheme.darkTheme
-                                        ? DarkColor.text
-                                        : LightColor.text,
-                                  ),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                      text: snapshot.data[0]['name'],
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Consumer<AppTheme>(
-                              builder: (context, theme, child) => Text(
-                                snapshot.data[0]['email'],
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: theme.getTheme() == AppTheme.darkTheme
-                                      ? DarkColor.secondary
-                                      : LightColor.secondary,
-                                ),
-                              ),
-                            ),
-                          ],
+                        width: 80,
+                        child: CircleAvatar(
+                          radius: 40,
+                          backgroundImage: NetworkImage(
+                            "https://thispersondoesnotexist.com/image",
+                          ),
                         ),
                       ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 80,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Consumer<AppTheme>(
+                                builder: (context, theme, child) => RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      color:
+                                          theme.getTheme() == AppTheme.darkTheme
+                                              ? DarkColor.text
+                                              : LightColor.text,
+                                    ),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                        text:
+                                            "${snapshot.data[0]['lastName']} ${snapshot.data[0]['firstName']} ${snapshot.data[0]['middleName']}",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Consumer<AppTheme>(
+                                builder: (context, theme, child) => Text(
+                                  snapshot.data[0]['email'],
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color:
+                                        theme.getTheme() == AppTheme.darkTheme
+                                            ? DarkColor.secondary
+                                            : LightColor.secondary,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Divider(),
+                SizedBox(
+                  height: 15,
+                ),
+                TextButton(
+                  child: Container(
+                    height: 40,
+                    child: Row(
+                      children: [
+                        Icon(Icons.person_pin),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          'Личные данные',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2
+                              .copyWith(fontSize: 18),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Divider(),
-              SizedBox(
-                height: 15,
-              ),
-              TextButton(
-                child: Container(
-                  height: 40,
-                  child: Row(
-                    children: [
-                      Icon(Icons.person_pin),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'Личные данные',
-                        style: Theme.of(context)
-                            .textTheme
-                            .button
-                            .copyWith(fontSize: 20),
-                      ),
-                    ],
                   ),
+                  onPressed: () => {},
                 ),
-                onPressed: () => {},
-              ),
-              TextButton(
-                child: Container(
-                  height: 40,
-                  child: Row(
-                    children: [
-                      Icon(Icons.dashboard),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'Портфолио',
-                        style: Theme.of(context)
-                            .textTheme
-                            .button
-                            .copyWith(fontSize: 20),
-                      ),
-                    ],
+                TextButton(
+                  child: Container(
+                    height: 40,
+                    child: Row(
+                      children: [
+                        Icon(Icons.dashboard),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          'Портфолио',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2
+                              .copyWith(fontSize: 18),
+                        ),
+                      ],
+                    ),
                   ),
+                  onPressed: () => {},
                 ),
-                onPressed: () => {},
-              ),
-              TextButton(
-                child: Container(
-                  height: 40,
-                  child: Row(
-                    children: [
-                      Icon(Icons.text_snippet),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'Резюме',
-                        style: Theme.of(context)
-                            .textTheme
-                            .button
-                            .copyWith(fontSize: 20),
-                      ),
-                    ],
+                TextButton(
+                  child: Container(
+                    height: 40,
+                    child: Row(
+                      children: [
+                        Icon(Icons.text_snippet),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          'Резюме',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2
+                              .copyWith(fontSize: 18),
+                        ),
+                      ],
+                    ),
                   ),
+                  onPressed: () => {},
                 ),
-                onPressed: () => {},
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
       );
     } else {
       return Center(child: CircularProgressIndicator());

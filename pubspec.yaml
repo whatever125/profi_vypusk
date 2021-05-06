@@ -31,6 +31,8 @@ dependencies:
   http: ^0.13.2
   shared_preferences: ^2.0.5
   provider: ^5.0.0
+  google_fonts: ^2.0.0
+  page_transition: ^1.1.7+6
 
 dev_dependencies:
   flutter_test:
