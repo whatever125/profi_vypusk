@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:profi_vypusk/ui/themes/theme.dart';
 import 'package:profi_vypusk/ui/themes/colors.dart';
+import 'package:profi_vypusk/ui/pages/homePage/tabNavigationItem/profileTab/personalDataPage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -140,7 +141,14 @@ class _ProfileTabState extends State<ProfileTab> {
                       ],
                     ),
                   ),
-                  onPressed: () => {},
+                  onPressed: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PersonalDataPage(),
+                      ),
+                    ),
+                  },
                 ),
                 TextButton(
                   child: Container(

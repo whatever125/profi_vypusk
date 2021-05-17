@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:profi_vypusk/ui/pages/welcomePage.dart';
 import 'package:profi_vypusk/ui/themes/theme.dart';
 import 'package:provider/provider.dart';
@@ -100,10 +99,7 @@ class NavDrawer extends StatelessWidget {
                       onTap: () => {
                         Navigator.pushAndRemoveUntil(
                           context,
-                          PageTransition(
-                            type: PageTransitionType.fade,
-                            child: WelcomePage(),
-                          ),
+                          MaterialPageRoute(builder: (context) => WelcomePage()),
                           (route) => route.isFirst,
                         ),
                       },

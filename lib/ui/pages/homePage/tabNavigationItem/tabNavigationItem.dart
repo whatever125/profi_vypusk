@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:profi_vypusk/ui/pages/homePage/feedTab.dart';
-import 'package:profi_vypusk/ui/pages/homePage/searchTab.dart';
-import 'package:profi_vypusk/ui/pages/homePage/profileTab.dart';
+import 'package:profi_vypusk/ui/pages/homePage/tabNavigationItem/feedTab.dart';
+import 'package:profi_vypusk/ui/pages/homePage/tabNavigationItem/searchTab.dart';
+import 'package:profi_vypusk/ui/pages/homePage/tabNavigationItem/profileTab/profileTab.dart';
 
 class TabNavigationItem {
   final Widget page;

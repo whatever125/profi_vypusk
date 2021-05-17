@@ -3,7 +3,6 @@ import 'package:profi_vypusk/ui/themes/theme.dart';
 import 'package:profi_vypusk/ui/themes/colors.dart';
 import 'package:profi_vypusk/ui/pages/signinPage.dart';
 import 'package:profi_vypusk/ui/pages/signUpPage.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -68,10 +67,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     onPressed: () => {
                       Navigator.push(
                         context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          child: SignUpPage(),
-                        ),
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
                       ),
                     },
                   ),
@@ -101,10 +97,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       onPressed: () => {
                         Navigator.push(
                           context,
-                          PageTransition(
-                            type: PageTransitionType.fade,
-                            child: SignInPage(),
-                          ),
+                          MaterialPageRoute(builder: (context) => SignInPage()),
                         ),
                       },
                     ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:profi_vypusk/ui/pages/homePage/homePage.dart';
 import 'package:profi_vypusk/ui/themes/theme.dart';
@@ -33,33 +32,36 @@ class _SignUpPageState extends State<SignUpPage> {
                 children: <Widget>[
                   Padding(
                     child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: RichText(
-                          text: TextSpan(
-                            style: TextStyle(
-                              fontSize: 25,
-                              color: theme.getTheme() == AppTheme.darkTheme
-                                  ? DarkColor.text
-                                  : LightColor.text,
-                            ),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: 'Создайте профиль',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            ],
+                      alignment: Alignment.bottomLeft,
+                      child: RichText(
+                        text: TextSpan(
+                          style: TextStyle(
+                            fontSize: 25,
+                            color: theme.getTheme() == AppTheme.darkTheme
+                                ? DarkColor.text
+                                : LightColor.text,
                           ),
-                        )),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: 'Создайте профиль',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                     padding: const EdgeInsets.symmetric(
                       vertical: 25,
                     ),
                   ),
                   Theme(
                     data: Theme.of(context).copyWith(
-                        primaryColor: theme.getTheme() == AppTheme.darkTheme
-                            ? DarkColor.accent
-                            : LightColor.accent),
+                      primaryColor: theme.getTheme() == AppTheme.darkTheme
+                          ? DarkColor.accent
+                          : LightColor.accent,
+                    ),
                     child: Padding(
                       child: TextField(
                         decoration: InputDecoration(
@@ -74,9 +76,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   Theme(
                     data: Theme.of(context).copyWith(
-                        primaryColor: theme.getTheme() == AppTheme.darkTheme
-                            ? DarkColor.accent
-                            : LightColor.accent),
+                      primaryColor: theme.getTheme() == AppTheme.darkTheme
+                          ? DarkColor.accent
+                          : LightColor.accent,
+                    ),
                     child: Padding(
                       child: TextField(
                         decoration: InputDecoration(
@@ -91,9 +94,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   Theme(
                     data: Theme.of(context).copyWith(
-                        primaryColor: theme.getTheme() == AppTheme.darkTheme
-                            ? DarkColor.accent
-                            : LightColor.accent),
+                      primaryColor: theme.getTheme() == AppTheme.darkTheme
+                          ? DarkColor.accent
+                          : LightColor.accent,
+                    ),
                     child: Padding(
                       child: TextField(
                         obscureText: true,
@@ -109,9 +113,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   Theme(
                     data: Theme.of(context).copyWith(
-                        primaryColor: theme.getTheme() == AppTheme.darkTheme
-                            ? DarkColor.accent
-                            : LightColor.accent),
+                      primaryColor: theme.getTheme() == AppTheme.darkTheme
+                          ? DarkColor.accent
+                          : LightColor.accent,
+                    ),
                     child: Padding(
                       child: TextField(
                         obscureText: true,
@@ -130,8 +135,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       height: 50,
                       width: 250,
                       decoration: BoxDecoration(
-                          color: Color(0xFF1DA1F2),
-                          borderRadius: BorderRadius.circular(25)),
+                        color: Color(0xFF1DA1F2),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
                       child: TextButton(
                         child: Text(
                           'Зарегистрироваться',
@@ -140,10 +146,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         onPressed: () => {
                           Navigator.pushAndRemoveUntil(
                             context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              child: HomePage(),
-                            ),
+                            MaterialPageRoute(builder: (context) => HomePage()),
                             (route) => route.isFirst,
                           ),
                         },

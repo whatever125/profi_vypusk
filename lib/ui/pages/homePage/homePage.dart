@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:profi_vypusk/ui/pages/homePage/navDrawer.dart';
-import 'package:profi_vypusk/ui/pages/homePage/tabNavigationItem.dart';
+import 'file:///C:/Users/kolma/AndroidStudioProjects/profi_vypusk/lib/ui/pages/homePage/tabNavigationItem/tabNavigationItem.dart';
 
 class HomePage extends StatefulWidget {
   @override

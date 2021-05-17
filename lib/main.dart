@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:profi_vypusk/ui/pages/splashPage.dart';
 import 'package:profi_vypusk/ui/themes/theme.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(
@@ -21,6 +22,13 @@ class MyApp extends StatelessWidget {
         home: SplashPage(),
         theme: theme.getTheme(),
         debugShowCheckedModeBanner: false,
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+        ],
+        supportedLocales: [
+          const Locale('ru', 'RU'),
+        ],
+        locale: const Locale('ru', 'RU'),
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:profi_vypusk/ui/pages/homePage/homePage.dart';
 import 'package:profi_vypusk/ui/themes/theme.dart';
 import 'package:profi_vypusk/ui/themes/colors.dart';
@@ -122,10 +121,7 @@ class _SignInPageState extends State<SignInPage> {
                         onPressed: () => {
                           Navigator.pushAndRemoveUntil(
                             context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              child: HomePage(),
-                            ),
+                            MaterialPageRoute(builder: (context) => HomePage()),
                             (route) => route.isFirst,
                           ),
                         },

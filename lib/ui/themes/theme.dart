@@ -25,6 +25,11 @@ class AppTheme with ChangeNotifier {
       selectedItemColor: LightColor.accent,
       unselectedItemColor: LightColor.secondary,
     ),
+    pageTransitionsTheme: PageTransitionsTheme(
+      builders: {
+        TargetPlatform.android: ZoomPageTransitionsBuilder(),
+      },
+    ),
   );
 
   static final ThemeData darkTheme = ThemeData(
@@ -48,6 +53,11 @@ class AppTheme with ChangeNotifier {
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedItemColor: DarkColor.accent,
       unselectedItemColor: DarkColor.secondary,
+    ),
+    pageTransitionsTheme: PageTransitionsTheme(
+      builders: {
+        TargetPlatform.android: ZoomPageTransitionsBuilder(),
+      },
     ),
   );
 
