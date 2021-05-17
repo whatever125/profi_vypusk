@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'welcomePage.dart';
 import 'package:profi_vypusk/theme.dart';
 import 'package:provider/provider.dart';
-import 'favPage.dart';
+import 'package:profi_vypusk/favoritePage.dart';
 
 class HomePage extends StatefulWidget {
   @override
