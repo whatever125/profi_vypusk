@@ -31,252 +31,247 @@ class _PersonalDataPageState extends State<PersonalDataPage> {
 
   @override
   Widget build(BuildContext context) {
-    return NotificationListener<OverscrollIndicatorNotification>(
-      onNotification: (overscroll) {
-        overscroll.disallowGlow();
-      },
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        appBar: AppBar(
-          title: Text('Личные данные'),
-        ),
-        body: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.all(15),
-            child: Consumer<AppTheme>(
-              builder: (context, theme, child) => Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '*Фамилия',
-                    style: TextStyle(
-                      color: Theme.of(context).hintColor,
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      appBar: AppBar(
+        title: Text('Личные данные'),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(15),
+          child: Consumer<AppTheme>(
+            builder: (context, theme, child) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '*Фамилия',
+                  style: TextStyle(
+                    color: Theme.of(context).hintColor,
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Theme(
+                  data: Theme.of(context).copyWith(
+                    primaryColor: theme.getTheme() == AppTheme.darkTheme
+                        ? DarkColor.accent
+                        : LightColor.accent,
+                  ),
+                  child: TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (val) {
+                      return val.isEmpty ? 'Пожалуйста, укажите фамилию' : null;
+                    },
+                    keyboardType: TextInputType.name,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      isDense: true,
                     ),
                   ),
-                  SizedBox(
-                    height: 5,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  '*Имя',
+                  style: TextStyle(
+                    color: Theme.of(context).hintColor,
                   ),
-                  Theme(
-                    data: Theme.of(context).copyWith(
-                      primaryColor: theme.getTheme() == AppTheme.darkTheme
-                          ? DarkColor.accent
-                          : LightColor.accent,
-                    ),
-                    child: TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (val) {
-                        return val.isEmpty
-                            ? 'Пожалуйста, укажите фамилию'
-                            : null;
-                      },
-                      keyboardType: TextInputType.name,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        isDense: true,
-                      ),
-                    ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Theme(
+                  data: Theme.of(context).copyWith(
+                    primaryColor: theme.getTheme() == AppTheme.darkTheme
+                        ? DarkColor.accent
+                        : LightColor.accent,
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    '*Имя',
-                    style: TextStyle(
-                      color: Theme.of(context).hintColor,
+                  child: TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (val) {
+                      return val.isEmpty ? 'Пожалуйста, укажите имя' : null;
+                    },
+                    keyboardType: TextInputType.name,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      isDense: true,
                     ),
                   ),
-                  SizedBox(
-                    height: 5,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  'Отчество',
+                  style: TextStyle(
+                    color: Theme.of(context).hintColor,
                   ),
-                  Theme(
-                    data: Theme.of(context).copyWith(
-                      primaryColor: theme.getTheme() == AppTheme.darkTheme
-                          ? DarkColor.accent
-                          : LightColor.accent,
-                    ),
-                    child: TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (val) {
-                        return val.isEmpty ? 'Пожалуйста, укажите имя' : null;
-                      },
-                      keyboardType: TextInputType.name,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        isDense: true,
-                      ),
-                    ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Theme(
+                  data: Theme.of(context).copyWith(
+                    primaryColor: theme.getTheme() == AppTheme.darkTheme
+                        ? DarkColor.accent
+                        : LightColor.accent,
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    'Отчество',
-                    style: TextStyle(
-                      color: Theme.of(context).hintColor,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Theme(
-                    data: Theme.of(context).copyWith(
-                      primaryColor: theme.getTheme() == AppTheme.darkTheme
-                          ? DarkColor.accent
-                          : LightColor.accent,
-                    ),
-                    child: TextFormField(
-                      autovalidateMode: AutovalidateMode.disabled,
-                      validator: (val) {
-                        return val.isEmpty
-                            ? 'Пожалуйста, укажите отчество'
-                            : null;
-                      },
-                      keyboardType: TextInputType.name,
-                      textCapitalization: TextCapitalization.words,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        isDense: true,
-                      ),
+                  child: TextFormField(
+                    autovalidateMode: AutovalidateMode.disabled,
+                    validator: (val) {
+                      return val.isEmpty
+                          ? 'Пожалуйста, укажите отчество'
+                          : null;
+                    },
+                    keyboardType: TextInputType.name,
+                    textCapitalization: TextCapitalization.words,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      isDense: true,
                     ),
                   ),
-                  SizedBox(
-                    height: 15,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  '*Дата рождения',
+                  style: TextStyle(
+                    color: Theme.of(context).hintColor,
                   ),
-                  Text(
-                    '*Дата рождения',
-                    style: TextStyle(
-                      color: Theme.of(context).hintColor,
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Theme(
+                  data: Theme.of(context).copyWith(
+                    primaryColor: theme.getTheme() == AppTheme.darkTheme
+                        ? DarkColor.accent
+                        : LightColor.accent,
+                  ),
+                  child: TextFormField(
+                    controller: _dobctrl,
+                    onTap: () async {
+                      FocusScope.of(context).requestFocus(new FocusNode());
+                      await _selectDate(context);
+                      _dobctrl.text = _dateOfBirth == null
+                          ? ''
+                          : DateFormat('dd.MM.yyyy').format(_dateOfBirth);
+                    },
+                    readOnly: true,
+                    autovalidateMode: AutovalidateMode.disabled,
+                    validator: (val) {
+                      return val.isEmpty
+                          ? 'Пожалуйста, укажите дату рождения'
+                          : null;
+                    },
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      isDense: true,
                     ),
+                    // DateFormat('dd-MM-yyyy').format(_dateOfBirth),
                   ),
-                  SizedBox(
-                    height: 5,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  '*Телефон',
+                  style: TextStyle(
+                    color: Theme.of(context).hintColor,
                   ),
-                  Theme(
-                    data: Theme.of(context).copyWith(
-                      primaryColor: theme.getTheme() == AppTheme.darkTheme
-                          ? DarkColor.accent
-                          : LightColor.accent,
-                    ),
-                    child: TextFormField(
-                      controller: _dobctrl,
-                      onTap: () async {
-                        FocusScope.of(context).requestFocus(new FocusNode());
-                        await _selectDate(context);
-                        _dobctrl.text = _dateOfBirth == null
-                            ? ''
-                            : DateFormat('dd.MM.yyyy').format(_dateOfBirth);
-                      },
-                      readOnly: true,
-                      autovalidateMode: AutovalidateMode.disabled,
-                      validator: (val) {
-                        return val.isEmpty
-                            ? 'Пожалуйста, укажите дату рождения'
-                            : null;
-                      },
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        isDense: true,
-                      ),
-                      // DateFormat('dd-MM-yyyy').format(_dateOfBirth),
-                    ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Theme(
+                  data: Theme.of(context).copyWith(
+                    primaryColor: theme.getTheme() == AppTheme.darkTheme
+                        ? DarkColor.accent
+                        : LightColor.accent,
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    '*Телефон',
-                    style: TextStyle(
-                      color: Theme.of(context).hintColor,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Theme(
-                    data: Theme.of(context).copyWith(
-                      primaryColor: theme.getTheme() == AppTheme.darkTheme
-                          ? DarkColor.accent
-                          : LightColor.accent,
-                    ),
-                    child: TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (val) {
-                        return true ? null : 'Пожалуйста, введите корректный номер телефона';
-                      },
-                      inputFormatters: [
-                        PhoneInputFormatter(),
-                      ],
-                      keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        isDense: true,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    '*Email',
-                    style: TextStyle(
-                      color: Theme.of(context).hintColor,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Theme(
-                    data: Theme.of(context).copyWith(
-                      primaryColor: theme.getTheme() == AppTheme.darkTheme
-                          ? DarkColor.accent
-                          : LightColor.accent,
-                    ),
-                    child: TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (val) => EmailValidator.validate(val)
+                  child: TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (val) {
+                      return true
                           ? null
-                          : "Пожалуйста, укажите корректный email",
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        isDense: true,
-                      ),
+                          : 'Пожалуйста, введите корректный номер телефона';
+                    },
+                    inputFormatters: [
+                      PhoneInputFormatter(),
+                    ],
+                    keyboardType: TextInputType.phone,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      isDense: true,
                     ),
                   ),
-                  SizedBox(
-                    height: 30,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  '*Email',
+                  style: TextStyle(
+                    color: Theme.of(context).hintColor,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 150,
-                        child: TextButton(
-                          child: Text(
-                            'Сохранить',
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Theme(
+                  data: Theme.of(context).copyWith(
+                    primaryColor: theme.getTheme() == AppTheme.darkTheme
+                        ? DarkColor.accent
+                        : LightColor.accent,
+                  ),
+                  child: TextFormField(
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (val) => EmailValidator.validate(val)
+                        ? null
+                        : "Пожалуйста, укажите корректный email",
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      isDense: true,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 150,
+                      child: TextButton(
+                        child: Text(
+                          'Сохранить',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        onPressed: () => {
+                          Navigator.of(context).pop(),
+                        },
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
                           ),
-                          onPressed: () => {
-                            Navigator.of(context).pop(),
-                          },
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                            ),
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                              Theme.of(context).accentColor,
-                            ),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            Theme.of(context).accentColor,
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),

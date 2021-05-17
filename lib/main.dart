@@ -16,19 +16,24 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<AppTheme>(
-      builder: (context, theme, child) => MaterialApp(
-        title: 'PROFIВЫПУСК',
-        home: SplashPage(),
-        theme: theme.getTheme(),
-        debugShowCheckedModeBanner: false,
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-        ],
-        supportedLocales: [
-          const Locale('ru', 'RU'),
-        ],
-        locale: const Locale('ru', 'RU'),
+    return NotificationListener<OverscrollIndicatorNotification>(
+      onNotification: (overscroll) {
+        overscroll.disallowGlow();
+      },
+      child: Consumer<AppTheme>(
+        builder: (context, theme, child) => MaterialApp(
+          title: 'PROFIВЫПУСК',
+          home: SplashPage(),
+          theme: theme.getTheme(),
+          debugShowCheckedModeBanner: false,
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+          ],
+          supportedLocales: [
+            const Locale('ru', 'RU'),
+          ],
+          locale: const Locale('ru', 'RU'),
+        ),
       ),
     );
   }

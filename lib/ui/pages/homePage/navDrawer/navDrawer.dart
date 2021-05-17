@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:profi_vypusk/ui/pages/welcomePage.dart';
+import 'package:profi_vypusk/ui/pages/homePage/navDrawer/favoritePage/favoritePage.dart';
 import 'package:profi_vypusk/ui/themes/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -62,7 +63,12 @@ class NavDrawer extends StatelessWidget {
                     Icons.star_outline,
                     color: Theme.of(context).iconTheme.color,
                   ),
-                  onTap: () => {Navigator.of(context).pop()},
+                  onTap: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => FavoritePage()),
+                    ),
+                  },
                 ),
                 ListTile(
                   title: Text('Настройки'),
@@ -99,7 +105,8 @@ class NavDrawer extends StatelessWidget {
                       onTap: () => {
                         Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => WelcomePage()),
+                          MaterialPageRoute(
+                              builder: (context) => WelcomePage()),
                           (route) => route.isFirst,
                         ),
                       },
