@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:profi_vypusk/ui/pages/welcomePage.dart';
+import 'settingsPage.dart';
 import 'package:profi_vypusk/ui/pages/homePage/navDrawer/favoritePage/favoritePage.dart';
 import 'package:profi_vypusk/ui/themes/theme.dart';
 import 'package:provider/provider.dart';
@@ -76,7 +77,7 @@ class NavDrawer extends StatelessWidget {
                     Icons.settings_outlined,
                     color: Theme.of(context).iconTheme.color,
                   ),
-                  onTap: () => {Navigator.of(context).pop()},
+                  onTap: () => {Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage()))},
                 ),
                 ListTile(
                   title: Text('Помощь'),
